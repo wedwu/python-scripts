@@ -40,8 +40,6 @@ python bot_detector.py --json sample_user.json
 - **You must comply with X’s Developer Policy — no scraping or automated judgment without consent.**
 - **The heuristics are intentionally simple; you can tune or replace them with ML models.**
 
-~~~~
-~~~~
 
 # Python Scripts for X: Bot Detector ML (Machine Learning)
 
@@ -69,18 +67,32 @@ followers,following,tweet_count,bio_length,has_profile_pic,is_verified,account_a
 
 (1 = bot, 0 = human)
 
+### 🧩 2. ML-enhanced script
+
+Save as bot_detector_ml.py:
+
+### 🚀 3. Usage
+
+Train the model
+
 ```bash
 python bot_detector_ml.py --train training_data.csv
 ```
+
+Predict live
 
 ```bash
 export X_BEARER_TOKEN="YOUR_TWITTER_BEARER_TOKEN"
 python bot_detector_ml.py --username elonmusk
 ```
 
+Predict offline
+
 ```bash
 python bot_detector_ml.py --json sample_user.json
 ```
+
+📊 Output Example
 
 ```bash
               precision    recall  f1-score   support
