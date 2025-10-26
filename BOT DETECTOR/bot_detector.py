@@ -1,4 +1,4 @@
-# // bot_detector_online.py
+# // bot_detector.py
 
 """
 Bot Detector for X (Twitter)
