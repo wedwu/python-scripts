@@ -10,7 +10,7 @@ import json
 import joblib
 import pandas as pd
 import numpy as np
-from datetime import datetime
+from datetime import datetime, timezone
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
@@ -39,7 +39,9 @@ def extract_features_from_user(user, tweets=None):
         if "created_at" in user
         else datetime.utcnow()
     )
-    age_days = max((datetime.utcnow() - created_at).days, 1)
+
+    # age_days = max((datetime.utcnow() - created_at).days, 1)
+    age_days = max((datetime.now(timezone.utc) - created_at).days, 1)
 
     features = {
         "followers": followers,

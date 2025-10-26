@@ -1,0 +1,4 @@
+followers,following,tweet_count,bio_length,has_profile_pic,is_verified,account_age_days,follow_ratio,tweets_per_day,is_bot
+10,200,500,5,0,0,100,0.05,5,1
+10000,5000,3000,100,1,1,2000,2.0,1.5,0
+500,1000,20000,15,1,0,1000,0.5,20,1

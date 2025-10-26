@@ -9,7 +9,7 @@ Supports:
 
 import os
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from statistics import mean
 
 # --- Optional Tweepy import for API mode ---
@@ -41,7 +41,8 @@ def extract_features_from_user(user, tweets=None):
         if "created_at" in user
         else datetime.utcnow()
     )
-    age_days = max((datetime.utcnow() - created_at).days, 1)
+    # age_days = max((datetime.utcnow() - created_at).days, 1)
+    age_days = max((datetime.now(timezone.utc) - created_at).days, 1)
 
     features = {
         "followers": followers,
@@ -102,7 +103,9 @@ def fetch_live(username):
         user_fields=["created_at", "description", "public_metrics", "verified", "profile_image_url"]
     ).data
 
-    tweets = client.get_users_tweets(id=user.id, max_results=50).data or []
+
+    # tweets = client.get_users_tweets(id=user.id, max_results=50).data or []
+    tweets = client.get_users_tweets(id=user.id, max_results=10).data or []
     user_json = user.data
     tweet_jsons = [t.data for t in tweets]
     return user_json, tweet_jsons
