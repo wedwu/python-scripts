@@ -1,11 +1,10 @@
 """
 Bot Detector for X (Twitter)
-Features:
-- Live API mode (requires bearer token)
-- Offline JSON mode
+- Live API mode or offline JSON mode
 - Rule-based bot likelihood score
 - Handles timezone-aware datetimes
 - Handles API rate limits
+- Skips tweets missing 'created_at'
 """
 
 import os
@@ -25,7 +24,7 @@ except ImportError:
 # ----------------------------
 # Configuration
 # ----------------------------
-BEARER_TOKEN = os.getenv("X_BEARER_TOKEN")  # Set your X API bearer token in environment
+BEARER_TOKEN = os.getenv("X_BEARER_TOKEN")
 USE_API = bool(BEARER_TOKEN) and tweepy is not None
 
 # ----------------------------
@@ -65,6 +64,7 @@ def extract_features_from_user(user, tweets=None):
         times = [
             datetime.fromisoformat(t["created_at"].replace("Z", "+00:00"))
             for t in tweets
+            if "created_at" in t
         ]
         if len(times) > 1:
             deltas = [(times[i] - times[i+1]).total_seconds() for i in range(len(times)-1)]
@@ -107,7 +107,11 @@ def fetch_live(username):
     # Retry tweets if rate limited
     for attempt in range(3):
         try:
-            tweets = client.get_users_tweets(id=user.id, max_results=50).data or []
+            tweets = client.get_users_tweets(
+                id=user.id,
+                max_results=50,
+                tweet_fields=["created_at", "text"]
+            ).data or []
             break
         except TooManyRequests:
             wait = 60 * (attempt + 1)
