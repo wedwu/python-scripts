@@ -40,7 +40,7 @@ python bot_detector.py --json sample_user.json
 - **You must comply with X’s Developer Policy — no scraping or automated judgment without consent.**
 - **The heuristics are intentionally simple; you can tune or replace them with ML models.**
 
-
+# 
 # Python Scripts for X: Bot Detector ML (Machine Learning)
 
 ### Tech Stack
