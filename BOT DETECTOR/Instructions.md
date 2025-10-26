@@ -36,11 +36,9 @@ python bot_detector.py --json sample_user.json
 
 ### ⚠️ Notes
 
-This script does not label accounts, it only computes a bot-likelihood score for analysis or research.
-
-You must comply with X’s Developer Policy — no scraping or automated judgment without consent.
-
-The heuristics are intentionally simple; you can tune or replace them with ML models.
+- **This script does not label accounts, it only computes a bot-likelihood score for analysis or research.**
+- **You must comply with X’s Developer Policy — no scraping or automated judgment without consent.**
+- **The heuristics are intentionally simple; you can tune or replace them with ML models.**
 
 ~~~~
 ~~~~
