@@ -1,4 +1,5 @@
-# Bot Detector
+# Python Scripts for X: Bot Detector
+
 This script does not label accounts, it only computes a bot-likelihood score for analysis or research.
 
 ### Tech Stack
